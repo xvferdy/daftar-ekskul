@@ -1,0 +1,127 @@
+<?php
+  // periksa apakah user sudah login, cek kehadiran session name 
+  // jika tidak ada, redirect ke login.php
+  session_start();
+  if (!isset($_SESSION["nama"])) {
+     header("Location: login.php");
+  }
+ 
+  // buka koneksi dengan MySQL
+  include("koneksi.php");
+
+  // cek apakah form telah di submit (untuk menghapus data)
+  if (isset($_POST["submit"])) {
+    // form telah disubmit, proses data
+    
+    // ambil nilai nim 
+    $nim = htmlentities(strip_tags(trim($_POST["nim"])));
+    // filter data
+    $nim = mysqli_real_escape_string($link,$nim);
+    
+    //jalankan query DELETE
+    $query = "DELETE FROM extrakurikuler WHERE nim='$nim' ";
+    $hasil_query = mysqli_query($link, $query);
+  
+    //periksa query, tampilkan pesan kesalahan jika gagal
+    if($hasil_query) {
+      // DELETE berhasil, redirect ke tampil_siswa.php + pesan
+        $pesan = "siswa dengan nim = \"<b>$nim</b>\" sudah berhasil di hapus";
+      $pesan = urlencode($pesan);
+        header("Location: tampil_siswa.php?pesan={$pesan}");
+    } 
+    else { 
+      die ("Query gagal dijalankan: ".mysqli_errno($link).
+           " - ".mysqli_error($link));
+    }
+  }
+?>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>YPJ School | Selamat datang</title>
+  <link href="style.css" rel="stylesheet" >
+  <link rel="icon" href="ypj2.png" type="image/png" >
+</head>
+<body>
+<div class="container">
+<div id="header">
+  <h1 id="logo">Sistem Informasi <span>Extrakurikuler</span></h1>
+  <p id="tanggal"><?php echo date("d M Y"); ?></p>
+</div>
+<hr>
+  <nav>
+  <ul>
+  	<li><a href="ekstra_kurikuler.php">Ekstra Kurikuler</a></li>
+    <li><a href="tampil_siswa.php">Tampil</a></li>
+    <li><a href="tambah_siswa.php">Tambah</a>
+    <li><a href="hapus_siswa.php">Hapus</a></li>
+    <li><a href="logout.php">Logout</a>
+  </ul>
+  </nav>
+  <form id="search" action="tampil_siswa.php" method="get">
+    <p>
+      <label for="nim">Nama : </label> 
+      <input type="text" name="nama" id="nama" placeholder="search..." >
+      <input type="submit" name="submit" value="Search">
+    </p>
+  </form>
+<h2>Hapus Data siswa</h2>
+<?php
+  // tampilkan pesan jika ada
+  if ((isset($_GET["pesan"]))) {
+      echo "<div class=\"pesan\">{$_GET["pesan"]}</div>";
+  }
+?>
+ <table border="1">
+  <tr>
+  <th>NIM</th>
+  <th>Nama</th>
+  <th>Kelas</th>
+  <th>Asal</th>
+  <th>Extrakurikuler</th>
+  <th>Hapus</th>
+  </tr>
+  <?php
+  // buat query untuk menampilkan seluruh data tabel extrakurikuler
+  $query = "SELECT * FROM extrakurikuler ORDER BY nama ASC";
+  $result = mysqli_query($link, $query);
+  
+  if(!$result){
+      die ("Query Error: ".mysqli_errno($link).
+           " - ".mysqli_error($link));
+  }
+  
+  //buat perulangan untuk element tabel dari data extrakurikuler
+  while($data = mysqli_fetch_assoc($result))
+  {
+    echo "<tr>";
+    echo "<td>$data[nim]</td>";
+    echo "<td>$data[nama]</td>";
+    echo "<td>$data[kelas]</td>";
+    echo "<td>$data[asal]</td>";
+    echo "<td>$data[extrakurikuler]</td>";
+    echo "<td>";
+    ?>
+      <form action="hapus_siswa.php" method="post" >
+      <input type="hidden" name="nim" value="<?php echo "$data[nim]"; ?>">
+      <input type="submit" name="submit" value="Hapus" >
+      </form>
+    <?php
+    echo "</td>";
+    echo "</tr>";
+  }
+  
+  // bebaskan memory 
+  mysqli_free_result($result);
+  
+  // tutup koneksi dengan database mysql
+  mysqli_close($link);
+  ?>
+  </table>
+  <div id="footer">
+    Copyright © <?php echo date("Y"); ?> YPJ Kuala-Kencana
+  </div>
+</div>
+</body>
+</html>
