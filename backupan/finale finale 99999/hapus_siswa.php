@@ -69,7 +69,7 @@
       <input type="submit" name="submit" value="Search">
     </p>
   </form>
-<h2>DATA SISWA</h2>
+<h2>HAPUS & EDIT DATA SISWA</h2>
 <?php
   // tampilkan pesan jika ada
   if ((isset($_GET["pesan"]))) {

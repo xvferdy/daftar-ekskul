@@ -19,22 +19,22 @@
   if (isset($_GET["submit"])) {
       
     // ambil nilai nama
-    $daftar = htmlentities(strip_tags(trim($_GET["daftar"])));
+    $nama = htmlentities(strip_tags(trim($_GET["nama"])));
     
     // filter untuk $nama untuk mencegah sql injection
-    $daftar = mysqli_real_escape_string($link,$daftar);
+    $nama = mysqli_real_escape_string($link,$nama);
     
     // buat query pencarian
-    $query  = "SELECT * FROM daftarsiswa WHERE nama LIKE '%$daftar%' ";
+    $query  = "SELECT * FROM mastersiswa WHERE nama LIKE '%$nama%' ";
     $query .= "ORDER BY nama ASC";
     
     // buat pesan
-    $pesan = "Hasil pencarian untuk daftar <b>\"$daftar\" </b>:";
+    $pesan = "Hasil pencarian untuk nama <b>\"$nama\" </b>:";
   } 
   else {
   // bukan dari form pencairan
-  // siapkan query untuk menampilkan seluruh data dari tabel daftarsiswa
-    $query = "SELECT * FROM daftarsiswa ORDER BY kelas ASC";
+  // siapkan query untuk menampilkan seluruh data dari tabel mastersiswa
+    $query = "SELECT * FROM mastersiswa ORDER BY nama ASC";
   }
 ?>
 <!DOCTYPE html>
@@ -92,14 +92,14 @@ li a:hover {
     <li><a href="logout.php">Logout</a>
   </ul>
   </nav>
-  <form id="search" action="informasi.php" method="get">
+  <form id="search" action="tampil_siswa.php" method="get">
     <p>
-      <label for="daftar">Nama : </label> 
-      <input type="text" name="daftar" id="daftar" placeholder="search..." >
+      <label for="nama">Nama : </label> 
+      <input type="text" name="nama" id="nama" placeholder="search..." >
       <input type="submit" name="submit" value="Search">
     </p>
   </form>
-<h2>SISWA YANG MENGIKUTI EKSKUL</h2>
+<h2>DATA SISWA</h2>
 <?php
   // tampilkan pesan jika ada
   if (isset($pesan)) {
@@ -108,33 +108,43 @@ li a:hover {
     
 ?>
 
-  <p>Ekskul: 
-    <select name="namaSiswa" id="namaSiswa">
-    </select>
-  </p>
-  <div id="hasil"></div>
-  <script>
-    var namaSiswaNode = document.getElementById("namaSiswa");
-    var hasilNode = document.getElementById("hasil");
-    
-    function generateSiswa(){
-      var request = new XMLHttpRequest();
-      request.open("GET", "nama_siswa.php", false);
-      request.send();
-      namaSiswaNode.innerHTML = request.responseText;
-    }
-    
-    function tabelSiswa(){
-      var nama = namaSiswaNode.value;
-      var request = new XMLHttpRequest();
-      request.open("GET", "tabel_siswa.php?n="+nama, false);
-      request.send();
-      hasilNode.innerHTML = request.responseText;
-    }
-    
-    generateSiswa();
-    namaSiswaNode.addEventListener("change",tabelSiswa);
-  </script>
+
+
+ <table border="1">
+  <tr>
+  <th>NIS</th>
+  <th>Nama</th>
+  <th>Kelas</th>
+  <th>Asal</th>
+  </tr>
+  <?php
+  // jalankan query
+  $result = mysqli_query($link, $query);
+  
+  if(!$result){
+      die ("Query Error: ".mysqli_errno($link).
+           " - ".mysqli_error($link));
+  }
+  
+  //buat perulangan untuk element tabel dari data mastersiswa
+  while($data = mysqli_fetch_assoc($result))
+  { 
+    echo "<tr>";
+    echo "<td>$data[nis]</td>";
+    echo "<td>$data[nama]</td>";
+    echo "<td>$data[kelas]</td>";
+    echo "<td>$data[asal]</td>";
+
+    echo "</tr>";
+  }
+  
+  // bebaskan memory 
+  mysqli_free_result($result);
+  
+  // tutup koneksi dengan database mysql
+  mysqli_close($link);
+  ?>
+  </table>
   <div id="footer">
     Copyright © <?php echo date("Y"); ?> YPJ Kuala-Kencana
   </div>

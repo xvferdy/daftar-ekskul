@@ -108,32 +108,34 @@ li a:hover {
     
 ?>
 
-  <p>Ekskul: 
-    <select name="namaSiswa" id="namaSiswa">
+
+  <h1>Tabel Mahasiswa dengan AJAX</h1>
+  <p>Nama Mahasiswa:
+    <select name="namaMahasiswa" id="namaMahasiswa">
     </select>
   </p>
   <div id="hasil"></div>
   <script>
-    var namaSiswaNode = document.getElementById("namaSiswa");
+    var namaMahasiswaNode = document.getElementById("namaMahasiswa");
     var hasilNode = document.getElementById("hasil");
     
-    function generateSiswa(){
+    function generateMahasiswa(){
       var request = new XMLHttpRequest();
-      request.open("GET", "nama_siswa.php", false);
+      request.open("GET", "nama_mahasiswa.php", false);
       request.send();
-      namaSiswaNode.innerHTML = request.responseText;
+      namaMahasiswaNode.innerHTML = request.responseText;
     }
     
-    function tabelSiswa(){
-      var nama = namaSiswaNode.value;
+    function tabelMahasiswa(){
+      var nama = namaMahasiswaNode.value;
       var request = new XMLHttpRequest();
-      request.open("GET", "tabel_siswa.php?n="+nama, false);
+      request.open("GET", "tabel_mahasiswa.php?n="+nama, false);
       request.send();
       hasilNode.innerHTML = request.responseText;
     }
     
-    generateSiswa();
-    namaSiswaNode.addEventListener("change",tabelSiswa);
+    generateMahasiswa();
+    namaMahasiswaNode.addEventListener("change",tabelMahasiswa);
   </script>
   <div id="footer">
     Copyright © <?php echo date("Y"); ?> YPJ Kuala-Kencana

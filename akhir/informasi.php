@@ -108,33 +108,45 @@ li a:hover {
     
 ?>
 
-  <p>Ekskul: 
-    <select name="namaSiswa" id="namaSiswa">
-    </select>
-  </p>
-  <div id="hasil"></div>
-  <script>
-    var namaSiswaNode = document.getElementById("namaSiswa");
-    var hasilNode = document.getElementById("hasil");
-    
-    function generateSiswa(){
-      var request = new XMLHttpRequest();
-      request.open("GET", "nama_siswa.php", false);
-      request.send();
-      namaSiswaNode.innerHTML = request.responseText;
-    }
-    
-    function tabelSiswa(){
-      var nama = namaSiswaNode.value;
-      var request = new XMLHttpRequest();
-      request.open("GET", "tabel_siswa.php?n="+nama, false);
-      request.send();
-      hasilNode.innerHTML = request.responseText;
-    }
-    
-    generateSiswa();
-    namaSiswaNode.addEventListener("change",tabelSiswa);
-  </script>
+
+
+ <table border="1">
+  <tr>
+  <th>NIS</th>
+  <th>Nama</th>
+  <th>Kelas</th>
+  <th>Asal</th>
+  <th>Ekstrakurikuler</th>
+
+  </tr>
+  <?php
+  // jalankan query
+  $result = mysqli_query($link, $query);
+  
+  if(!$result){
+      die ("Query Error: ".mysqli_errno($link).
+           " - ".mysqli_error($link));
+  }
+  
+  //buat perulangan untuk element tabel dari data mastersiswa
+  while($data = mysqli_fetch_assoc($result))
+  { 
+    echo "<tr>";
+    echo "<td>$data[nis]</td>";
+    echo "<td>$data[nama]</td>";
+    echo "<td>$data[kelas]</td>";
+    echo "<td>$data[asal]</td>";
+    echo "<td>$data[ekstrakurikuler]</td>";
+    echo "</tr>";
+  }
+  
+  // bebaskan memory 
+  mysqli_free_result($result);
+  
+  // tutup koneksi dengan database mysql
+  mysqli_close($link);
+  ?>
+  </table>
   <div id="footer">
     Copyright © <?php echo date("Y"); ?> YPJ Kuala-Kencana
   </div>

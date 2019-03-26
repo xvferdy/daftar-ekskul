@@ -18,7 +18,7 @@
     $nama = htmlentities(strip_tags(trim($_POST["nama"])));
     $kelas = htmlentities(strip_tags(trim($_POST["kelas"])));
     $asal = htmlentities(strip_tags(trim($_POST["asal"])));
-    $ekstrakurikuler = htmlentities(strip_tags(trim($_POST["ekstrakurikuler"])));
+
 
     
     // siapkan variabel untuk menampung pesan error
@@ -36,7 +36,7 @@
     // cek ke database, apakah sudah ada nomor NIS yang sama    
     // filter data $nis
     $nis = mysqli_real_escape_string($link,$nis);
-    $query = "SELECT * FROM daftarsiswa WHERE nis='$nis'";
+    $query = "SELECT * FROM mastersiswa WHERE nis='$nis'";
     $hasil_query = mysqli_query($link, $query);
   
     // cek jumlah record (baris), jika ada, $nis tidak bisa diproses
@@ -59,8 +59,7 @@
     if (empty($asal)) {
       $pesan_error .= "Asal belum diisi <br>";
     }
-              	  
-			  
+              
     
      
     // jika tidak ada error, input ke database
@@ -71,22 +70,21 @@
       $nama = mysqli_real_escape_string($link,$nama );
       $kelas = mysqli_real_escape_string($link,$kelas);
       $asal = mysqli_real_escape_string($link,$asal);
-      $ekstrakurikuler = mysqli_real_escape_string($link,$ekstrakurikuler);
       
       
       //buat dan jalankan query INSERT
-      $query = "INSERT INTO daftarsiswa VALUES ";
+      $query = "INSERT INTO mastersiswa VALUES ";
       $query .= "('$nis', '$nama', '$kelas', ";
-      $query .= "'$asal','$ekstrakurikuler')";
+      $query .= "'$asal')";
 
       $result = mysqli_query($link, $query);
       
       //periksa hasil query
       if($result) {
-      // INSERT berhasil, redirect ke informasi.php + pesan
+      // INSERT berhasil, redirect ke tampil_siswa.php + pesan
         $pesan = "siswa dengan nama = \"<b>$nama</b>\" sudah berhasil di tambah";
         $pesan = urlencode($pesan);
-        header("Location: hapus_siswa.php?pesan={$pesan}");
+        header("Location: tampil_siswa.php?pesan={$pesan}");
       } 
       else { 
       die ("Query gagal dijalankan: ".mysqli_errno($link).
@@ -100,70 +98,9 @@
     $pesan_error = "";
     $nis = "";
     $nama = "";
-    $kelas = "";  
+    $kelas = "";   
     $asal = "";
-	$ekstrakurikuler = "";
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-    if (isset($_POST["submitcheck"])) {
-  if ($_POST["submitcheck"]=="Check") {
-      //nilai form berasal dari halaman edit_siswa.php
-    
-      // ambil nilai nim 
-      $nis = htmlentities(strip_tags(trim($_POST["nis"])));
-      // filter data
-      $nis = mysqli_real_escape_string($link,$nis);
-    
-      // ambil semua data dari database untuk menjadi nilai awal form
-      $query = "SELECT * FROM mastersiswa WHERE nis='$nis'";
-      $result = mysqli_query($link, $query);
-    
-	
-	$jumlah_data = mysqli_num_rows($result);
-     if ($jumlah_data < 1 ) {
-       $pesan_error .= "NIS TAK DIKENALI!!! <br>";  
-    }
-	
-
-      if(!$result){
-        die ("Query Error: ".mysqli_errno($link).
-             " - ".mysqli_error($link));
-      }
-	
-
-      // tidak perlu pakai perulangan while, karena hanya ada 1 record
-      $data = mysqli_fetch_assoc($result);    
-       
-      $nama = $data["nama"];
-      $kelas = $data["kelas"];
-      $asal = $data["asal"];
-
- 
-    // bebaskan memory 
-    mysqli_free_result($result);
-    }}
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
 
 ?>
 <!DOCTYPE html>
@@ -200,62 +137,34 @@
       <input type="submit" name="submit" value="Search">
     </p>
   </form>
-<h2>DAFTAR EKSKUL</h2>
+<h2>TAMBAH DATA SISWA</h2>
 <?php
   // tampilkan error jika ada
   if ($pesan_error !== "") {
       echo "<div class=\"error\">$pesan_error</div>";
   }
 ?>
-<form id="form_siswa" action="daftar_siswa.php" method="post">
+<form id="form_siswa" action="tambah_siswa.php" method="post">
 <fieldset>
 <legend>Siswa Baru</legend>
   <p>
     <label for="nis">NIS : </label> 
-    <input type="text" name="nis" id="nis" value="<?php echo $nis ?>"><input type="submit" name="submitcheck" value="Check" > (8 digit angka)
-  
-
-
-      
-
-  
+    <input type="text" name="nis" id="nis" value="<?php echo $nis ?>"> (8 digit angka)
   </p>
-  
-  
-  
-     
-  
-  
-  
-  
   <p>
     <label for="nama">Nama : </label> 
-    <input type="text" name="nama" id="nama" value="<?php echo $nama ?>" readonly>
+    <input type="text" name="nama" id="nama" value="<?php echo $nama ?>">
   </p>
   <p>
     <label for="kelas">Kelas : </label> 
     <input type="text" name="kelas" id="kelas" 
-    value="<?php echo $kelas ?>" readonly>
+    value="<?php echo $kelas ?>">
   </p>
-
   <p>
     <label for="asal">Asal : </label> 
-    <input type="text" name="asal" id="asal" value="<?php echo $asal ?>" readonly>
+    <input type="text" name="asal" id="asal" value="<?php echo $asal ?>">
   </p>
-    <p>
-    <label for="ekstrakurikuler" >Ekstrakurikuler : </label> 
-      <select name="ekstrakurikuler" id="ekstrakurikuler">
-	  
-         <?php
-$query = "SELECT * FROM masterekskul";
-$result = mysqli_query($link, $query);
-while($data = mysqli_fetch_assoc($result))
-{
-echo "<option value='".$data['ekstrakurikuler']."'>".$data['ekstrakurikuler']."</option>";
-}
-?>
-      </select>
-  </p>
+  
 </fieldset>
   <br>
   <p>
