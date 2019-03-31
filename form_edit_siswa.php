@@ -220,6 +220,14 @@ echo "<option value='".$data['ekstrakurikuler']."'>".$data['ekstrakurikuler']."<
       </select>
   </p>
   
+  
+  
+  
+
+  
+  
+  
+  
 </fieldset>
   <br>
   <p>
