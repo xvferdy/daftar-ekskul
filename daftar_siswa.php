@@ -250,8 +250,8 @@ if (isset($_POST["submitcheck"])) {
                                                             $query = "SELECT * FROM masterekskul";
                                                             $result = mysqli_query($link, $query);
                                                             while ($data = mysqli_fetch_assoc($result)) {
-                                                                echo "<option value='" . $data['ekstrakurikuler'] . "'>" . $data['ekstrakurikuler'] . "</option>";
-                                                              }
+                                                              echo "<option value='" . $data['ekstrakurikuler'] . "'>" . $data['ekstrakurikuler'] . "</option>";
+                                                            }
                                                             ?>
           </select>
         </p>
