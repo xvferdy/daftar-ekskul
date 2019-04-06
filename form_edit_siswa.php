@@ -202,7 +202,7 @@ if (isset($_POST["submit"])) {
 
         <p>
           <label for="ekstrakurikuler">Ekstrakurikuler : </label>
-          <input type="text" name="ekstrakurikuler" id="ekstrakurikuler" value="<?php echo $ekstrakurikuler ?>" readonly>
+          <input type="hidden" name="ekstrakurikuler" id="ekstrakurikuler" value="<?php echo $ekstrakurikuler ?>" readonly >
 
           <select name="ekstrakurikuler" id="ekstrakurikuler">
             <?php
@@ -231,7 +231,13 @@ if (isset($_POST["submit"])) {
     </form>
 
   </div>
-
+    <script>
+        var ganti = document.getElementById('ekstrakurikuler');
+        var love = ganti.value;
+		
+        var drop = document.querySelector('select');
+        drop.value = love;
+    </script>
 </body>
 
 </html>

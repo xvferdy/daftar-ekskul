@@ -133,8 +133,10 @@ li a:hover {
     }
     
     generateSiswa();
+	tabelSiswa();
     namaSiswaNode.addEventListener("change",tabelSiswa);
   </script>
+  
   <div id="footer">
     Copyright © <?php echo date("Y"); ?> YPJ Kuala-Kencana
   </div>
