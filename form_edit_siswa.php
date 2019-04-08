@@ -39,7 +39,6 @@ if (isset($_POST["submit"])) {
     $asal = $data["asal"];
     $ekstrakurikuler = $data["ekstrakurikuler"];
 
-
     // bebaskan memory 
     mysqli_free_result($result);
   } else if ($_POST["submit"] == "Update Data") {
@@ -80,10 +79,6 @@ if (isset($_POST["submit"])) {
     $pesan_error .= "Asal belum diisi <br>";
   }
 
-
-
-
-
   // jika tidak ada error, input ke database
   if (($pesan_error === "") and ($_POST["submit"] == "Update Data")) {
 
@@ -96,8 +91,6 @@ if (isset($_POST["submit"])) {
     $kelas = mysqli_real_escape_string($link, $kelas);
     $asal = mysqli_real_escape_string($link, $asal);
     $ekstrakurikuler = mysqli_real_escape_string($link, $ekstrakurikuler);
-
-
 
     //buat dan jalankan query UPDATE ke daftarsiswa
     $query  = "UPDATE daftarsiswa ";
@@ -131,9 +124,8 @@ if (isset($_POST["submit"])) {
   // redirect ke hapus_siswa.php
   header("Location: hapus_siswa.php");
 }
-
-
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -202,16 +194,16 @@ if (isset($_POST["submit"])) {
 
         <p>
           <label for="ekstrakurikuler">Ekstrakurikuler : </label>
-          <input type="hidden" name="ekstrakurikuler" id="ekstrakurikuler" value="<?php echo $ekstrakurikuler ?>" readonly >
+          <input type="hidden" name="ekstrakurikuler" id="ekstrakurikuler" value="<?php echo $ekstrakurikuler ?>" readonly>
 
           <select name="ekstrakurikuler" id="ekstrakurikuler">
             <?php
-                                                                                $query = "SELECT * FROM masterekskul";
-                                                                                $result = mysqli_query($link, $query);
-                                                                                while ($data = mysqli_fetch_assoc($result)) {
-                                                                                  echo "<option value='" . $data['ekstrakurikuler'] . "'>" . $data['ekstrakurikuler'] . "</option>";
-                                                                                }
-                                                                                ?>
+                                                                                  $query = "SELECT * FROM masterekskul";
+                                                                                  $result = mysqli_query($link, $query);
+                                                                                  while ($data = mysqli_fetch_assoc($result)) {
+                                                                                    echo "<option value='" . $data['ekstrakurikuler'] . "'>" . $data['ekstrakurikuler'] . "</option>";
+                                                                                  }
+                                                                                  ?>
           </select>
         </p>
 
@@ -231,17 +223,17 @@ if (isset($_POST["submit"])) {
     </form>
 
   </div>
-    <script>
-        var ganti = document.getElementById('ekstrakurikuler');
-        var love = ganti.value;
-		
-        var drop = document.querySelector('select');
-        drop.value = love;
-    </script>
+  <script>
+    var ganti = document.getElementById('ekstrakurikuler');
+    var love = ganti.value;
+
+    var drop = document.querySelector('select');
+    drop.value = love;
+  </script>
 </body>
 
 </html>
 <?php
-                                                                                // tutup koneksi dengan database mysql
-                                                                                mysqli_close($link);
-                                                                                ?>
+                                                                                  // tutup koneksi dengan database mysql
+                                                                                  mysqli_close($link);
+                                                                                  ?>

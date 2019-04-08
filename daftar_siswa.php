@@ -20,7 +20,6 @@ if (isset($_POST["submit"])) {
   $asal = htmlentities(strip_tags(trim($_POST["asal"])));
   $ekstrakurikuler = htmlentities(strip_tags(trim($_POST["ekstrakurikuler"])));
 
-
   // siapkan variabel untuk menampung pesan error
   $pesan_error = "";
 
@@ -60,9 +59,6 @@ if (isset($_POST["submit"])) {
     $pesan_error .= "Asal belum diisi <br>";
   }
 
-
-
-
   // jika tidak ada error, input ke database
   if ($pesan_error === "") {
 
@@ -72,7 +68,6 @@ if (isset($_POST["submit"])) {
     $kelas = mysqli_real_escape_string($link, $kelas);
     $asal = mysqli_real_escape_string($link, $asal);
     $ekstrakurikuler = mysqli_real_escape_string($link, $ekstrakurikuler);
-
 
     //buat dan jalankan query INSERT
     $query = "INSERT INTO daftarsiswa VALUES ";
@@ -103,14 +98,6 @@ if (isset($_POST["submit"])) {
   $ekstrakurikuler = "";
 }
 
-
-
-
-
-
-
-
-
 if (isset($_POST["submitcheck"])) {
   if ($_POST["submitcheck"] == "Check") {
     //nilai form berasal dari halaman edit_siswa.php
@@ -124,18 +111,15 @@ if (isset($_POST["submitcheck"])) {
     $query = "SELECT * FROM mastersiswa WHERE nis='$nis'";
     $result = mysqli_query($link, $query);
 
-
     $jumlah_data = mysqli_num_rows($result);
     if ($jumlah_data < 1) {
       $pesan_error .= "NIS TAK DIKENALI!!! <br>";
     }
 
-
     if (!$result) {
       die("Query Error: " . mysqli_errno($link) .
         " - " . mysqli_error($link));
     }
-
 
     // tidak perlu pakai perulangan while, karena hanya ada 1 record
     $data = mysqli_fetch_assoc($result);
@@ -144,27 +128,12 @@ if (isset($_POST["submitcheck"])) {
     $kelas = $data["kelas"];
     $asal = $data["asal"];
 
-
     // bebaskan memory 
     mysqli_free_result($result);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
+
 <!DOCTYPE html>
 <html>
 
