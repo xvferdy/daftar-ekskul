@@ -44,7 +44,6 @@ if (!$hasil_query) {
 }
 
 // buat query untuk CREATE tabel mastersiswa
-
 $query  = "CREATE TABLE mastersiswa (nis CHAR(8), nama VARCHAR(100), ";
 $query .= "kelas CHAR(10), asal VARCHAR(50), ";
 $query .= "PRIMARY KEY (nis))";
@@ -79,7 +78,6 @@ $query .= "('13098417', 'Petrus Takimai',     '4', 'Asmat'),";
 $query .= "('13093411', 'Bayu Skak',          '4', 'Semarang'),";
 $query .= "('13063266', 'Kencana Masnandifu', '4', 'Biak') ";
 
-
 $hasil_query = mysqli_query($link, $query);
 
 if (!$hasil_query) {
@@ -88,7 +86,6 @@ if (!$hasil_query) {
 } else {
   echo "Tabel <b>'mastersiswa'</b> berhasil diisi... <br>";
 }
-
 
 // cek apakah tabel masterekskul sudah ada. jika ada, hapus tabel
 $query = "DROP TABLE IF EXISTS masterekskul";
@@ -102,7 +99,6 @@ if (!$hasil_query) {
 }
 
 // buat query untuk CREATE tabel masterekskul
-
 $query  = "CREATE TABLE masterekskul (kode CHAR(8),ekstrakurikuler VARCHAR(100), ";
 $query .= "guru VARCHAR(100))";
 
@@ -128,7 +124,6 @@ $query .= "(8,'Klub Sains', 'Pontoh'),";
 $query .= "(9,'Komputer', 'Agus'),";
 $query .= "(10,'Catur', 'Pontoh')";
 
-
 $hasil_query = mysqli_query($link, $query);
 
 if (!$hasil_query) {
@@ -137,9 +132,6 @@ if (!$hasil_query) {
 } else {
   echo "Tabel <b>'masterekskul'</b> berhasil diisi... <br>";
 }
-
-
-
 
 // cek apakah tabel daftarsiswa sudah ada. jika ada, hapus tabel
 $query = "DROP TABLE IF EXISTS daftarsiswa";
@@ -153,7 +145,6 @@ if (!$hasil_query) {
 }
 
 // buat query untuk CREATE tabel daftarsiswa
-
 $query  = "CREATE TABLE daftarsiswa (nis CHAR(8), nama VARCHAR(100), ";
 $query .= "kelas CHAR(10), asal VARCHAR(50), ";
 $query .= "ekstrakurikuler VARCHAR(100))";
@@ -166,13 +157,6 @@ if (!$hasil_query) {
 } else {
   echo "Tabel <b>'daftarsiswa'</b> berhasil dibuat... <br>";
 }
-
-
-
-
-
-
-
 
 // cek apakah tabel admin sudah ada. jika ada, hapus tabel
 $query = "DROP TABLE IF EXISTS admin";
@@ -200,9 +184,6 @@ if (!$hasil_query) {
 $username = "alan";
 $password = sha1("zz");
 
-
-
-
 // buat query untuk INSERT data ke tabel admin
 $query  = "INSERT INTO admin VALUES ('$username','$password')";
 
@@ -214,8 +195,6 @@ if (!$hasil_query) {
 } else {
   echo "Tabel <b>'admin'</b> berhasil diisi... <br>";
 }
-
-
 
 // tutup koneksi dengan database mysql
 mysqli_close($link);

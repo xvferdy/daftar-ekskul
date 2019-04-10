@@ -164,11 +164,11 @@ if (isset($_POST["submit"])) {
     </form>
     <h2>Edit Data Siswa</h2>
     <?php
-                      // tampilkan error jika ada
-                      if ($pesan_error !== "") {
-                        echo "<div class=\"error\">$pesan_error</div>";
-                      }
-                      ?>
+    // tampilkan error jika ada
+    if ($pesan_error !== "") {
+      echo "<div class=\"error\">$pesan_error</div>";
+    }
+    ?>
     <form id="form_siswa" action="form_edit_siswa.php" method="post">
       <fieldset>
         <legend>Edit Siswa</legend>
@@ -198,23 +198,14 @@ if (isset($_POST["submit"])) {
 
           <select name="ekstrakurikuler" id="ekstrakurikuler">
             <?php
-                                                                                  $query = "SELECT * FROM masterekskul";
-                                                                                  $result = mysqli_query($link, $query);
-                                                                                  while ($data = mysqli_fetch_assoc($result)) {
-                                                                                    echo "<option value='" . $data['ekstrakurikuler'] . "'>" . $data['ekstrakurikuler'] . "</option>";
-                                                                                  }
-                                                                                  ?>
+            $query = "SELECT * FROM masterekskul";
+            $result = mysqli_query($link, $query);
+            while ($data = mysqli_fetch_assoc($result)) {
+              echo "<option value='" . $data['ekstrakurikuler'] . "'>" . $data['ekstrakurikuler'] . "</option>";
+            }
+            ?>
           </select>
         </p>
-
-
-
-
-
-
-
-
-
       </fieldset>
       <br>
       <p>
@@ -234,6 +225,6 @@ if (isset($_POST["submit"])) {
 
 </html>
 <?php
-                                                                                  // tutup koneksi dengan database mysql
-                                                                                  mysqli_close($link);
-                                                                                  ?>
+// tutup koneksi dengan database mysql
+mysqli_close($link);
+?>

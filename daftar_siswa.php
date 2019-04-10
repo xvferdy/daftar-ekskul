@@ -172,31 +172,18 @@ if (isset($_POST["submitcheck"])) {
     </form>
     <h2>DAFTAR EKSKUL</h2>
     <?php
-                      // tampilkan error jika ada
-                      if ($pesan_error !== "") {
-                        echo "<div class=\"error\">$pesan_error</div>";
-                      }
-                      ?>
+    // tampilkan error jika ada
+    if ($pesan_error !== "") {
+      echo "<div class=\"error\">$pesan_error</div>";
+    }
+    ?>
     <form id="form_siswa" action="daftar_siswa.php" method="post">
       <fieldset>
         <legend>Siswa Baru</legend>
         <p>
           <label for="nis">NIS : </label>
           <input type="text" name="nis" id="nis" value="<?php echo $nis ?>"><input type="submit" name="submitcheck" value="Check"> (8 digit angka)
-
-
-
-
-
-
         </p>
-
-
-
-
-
-
-
 
         <p>
           <label for="nama">Nama : </label>
@@ -216,12 +203,12 @@ if (isset($_POST["submitcheck"])) {
           <select name="ekstrakurikuler" id="ekstrakurikuler">
 
             <?php
-                                                            $query = "SELECT * FROM masterekskul";
-                                                            $result = mysqli_query($link, $query);
-                                                            while ($data = mysqli_fetch_assoc($result)) {
-                                                              echo "<option value='" . $data['ekstrakurikuler'] . "'>" . $data['ekstrakurikuler'] . "</option>";
-                                                            }
-                                                            ?>
+            $query = "SELECT * FROM masterekskul";
+            $result = mysqli_query($link, $query);
+            while ($data = mysqli_fetch_assoc($result)) {
+              echo "<option value='" . $data['ekstrakurikuler'] . "'>" . $data['ekstrakurikuler'] . "</option>";
+            }
+            ?>
           </select>
         </p>
       </fieldset>
@@ -241,6 +228,6 @@ if (isset($_POST["submitcheck"])) {
 
 </html>
 <?php
-                                                            // tutup koneksi dengan database mysql
-                                                            mysqli_close($link);
-                                                            ?>
+// tutup koneksi dengan database mysql
+mysqli_close($link);
+?>
