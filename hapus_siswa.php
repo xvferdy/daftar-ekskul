@@ -72,11 +72,11 @@ if (isset($_POST["submit"])) {
     </form>
     <h2>DATA SISWA</h2>
     <?php
-                      // tampilkan pesan jika ada
-                      if ((isset($_GET["pesan"]))) {
-                        echo "<div class=\"pesan\">{$_GET["pesan"]}</div>";
-                      }
-                      ?>
+    // tampilkan pesan jika ada
+    if ((isset($_GET["pesan"]))) {
+      echo "<div class=\"pesan\">{$_GET["pesan"]}</div>";
+    }
+    ?>
     <table border="1">
       <tr>
         <th>NIS</th>
@@ -88,51 +88,48 @@ if (isset($_POST["submit"])) {
         <th>Edit</th>
       </tr>
       <?php
-                      // buat query untuk menampilkan seluruh data tabel siswa
-                      $query = "SELECT * FROM daftarsiswa ORDER BY nama ASC";
-                      $result = mysqli_query($link, $query);
+      // buat query untuk menampilkan seluruh data tabel siswa
+      $query = "SELECT * FROM daftarsiswa ORDER BY nama ASC";
+      $result = mysqli_query($link, $query);
 
-                      if (!$result) {
-                        die("Query Error: " . mysqli_errno($link) .
-                          " - " . mysqli_error($link));
-                      }
+      if (!$result) {
+        die("Query Error: " . mysqli_errno($link) .
+          " - " . mysqli_error($link));
+      }
 
-                      //buat perulangan untuk element tabel dari data siswa
-                      while ($data = mysqli_fetch_assoc($result)) {
-                        echo "<tr>";
-                        echo "<td>$data[nis]</td>";
-                        echo "<td>$data[nama]</td>";
-                        echo "<td>$data[kelas]</td>";
-                        echo "<td>$data[asal]</td>";
-                        echo "<td>$data[ekstrakurikuler]</td>";
-                        echo "<td>";
-                        ?>
+      //buat perulangan untuk element tabel dari data siswa
+      while ($data = mysqli_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td>$data[nis]</td>";
+        echo "<td>$data[nama]</td>";
+        echo "<td>$data[kelas]</td>";
+        echo "<td>$data[asal]</td>";
+        echo "<td>$data[ekstrakurikuler]</td>";
+        echo "<td>";
+        ?>
+        <form action="hapus_siswa.php" method="post">
+          <input type="hidden" name="nis" value="<?php echo "$data[nis]"; ?>">
+          <input type="submit" name="submit" value="Hapus" onclick="myFunction()" title="Hello beautiful">
+        </form>
+        <?php
+        echo "</td>";
+        echo "<td>";
+        ?>
+        <form action="form_edit_siswa.php" method="post">
+          <input type="hidden" name="nis" value="<?php echo "$data[nis]"; ?>">
+          <input type="submit" name="submit" value="Edit">
+        </form>
+        <?php
+        echo "</td>";
+        echo "</tr>";
+      }
 
-                        <form action="hapus_siswa.php" method="post">
-                          <input type="hidden" name="nis" value="<?php echo "$data[nis]"; ?>">
-                                                <input type="submit" name="submit" value="Hapus" onclick="myFunction()" title="Hello beautiful">
-                                              </form>
-                                              <?php
-                                                echo "</td>";
+      // bebaskan memory 
+      mysqli_free_result($result);
 
-                                                echo "<td>";
-                                                ?>
-                                                <form action="form_edit_siswa.php" method="post">
-                                                  <input type="hidden" name="nis" value="<?php echo "$data[nis]"; ?>">
-                                                <input type="submit" name="submit" value="Edit">
-                                              </form>
-                                              <?php
-                                                echo "</td>";
-
-                                                echo "</tr>";
-                                              }
-
-                                              // bebaskan memory 
-                                              mysqli_free_result($result);
-
-                                              // tutup koneksi dengan database mysql
-                                              mysqli_close($link);
-                                              ?>
+      // tutup koneksi dengan database mysql
+      mysqli_close($link);
+      ?>
     </table>
     <div id="footer">
       Copyright © <?php echo date("Y"); ?> YPJ Kuala-Kencana
@@ -140,11 +137,10 @@ if (isset($_POST["submit"])) {
   </div>
 
   <script>
+    // buat modal box (konfirmasi popout)
     var tesfinal = document.querySelectorAll("input[title~=beautiful]");
 
     function myFunction() {
-
-
       var r = confirm(
         "Konfirmasi!\nHapus Data Siswa?"
       );
