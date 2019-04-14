@@ -60,12 +60,12 @@ if (!$hasil_query) {
 // buat query untuk INSERT data ke tabel mastersiswa
 $query  = "INSERT INTO mastersiswa VALUES ";
 $query .= "('14405021', 'Sadrak Wamafma',     '4', 'Fakfak'),";
-$query .= "('17081034', 'Ucok Benedik',       '4', 'Batak'),";
+$query .= "('17081034', 'Benediktus Sidebang','4', 'Batak'),";
 $query .= "('11013021', 'Anti',               '4', 'Bugis'),";
 $query .= "('15612086', 'Reymond Timbuleng',  '4', 'Menado'),";
 $query .= "('13033017', 'Pamela Rumpeday',    '4', 'Jayapura'),";
 $query .= "('11044017', 'Dewi Lempoy',        '4', 'Menado'),";
-$query .= "('15032012', 'Ferdy Pongbubun',    '4', 'Toraja'),";
+$query .= "('15032012', 'Berlianto Ferdynand Pongbubun', '4', 'Toraja'),";
 $query .= "('13089018', 'Adit Jayakusuma',    '4', 'Semarang'),";
 $query .= "('13093419', 'Ayu Rahayu',         '4', 'Jakarta'),";
 $query .= "('13093619', 'Hubert Kiwak',       '4', 'Biak'),";
@@ -115,13 +115,13 @@ if (!$hasil_query) {
 $query  = "INSERT INTO masterekskul VALUES ";
 $query .= "(1,'Sepak Bola', 'Lodi'),";
 $query .= "(2,'Bulutangkis',' Lodi'),";
-$query .= "(3,'Renang', 'Wahyu'),";
-$query .= "(4,'Basket', 'Wahyu'),";
+$query .= "(3,'Renang', 'Gelis'),";
+$query .= "(4,'Basket', 'Gelis'),";
 $query .= "(5,'Tata Boga', 'Andreas'),";
 $query .= "(6,'Bahasa Asing', 'Imam'),";
 $query .= "(7,'Klub Matematika', 'Sri'),";
 $query .= "(8,'Klub Sains', 'Pontoh'),";
-$query .= "(9,'Komputer', 'Agus'),";
+$query .= "(9,'Komputer', 'Hendrikus'),";
 $query .= "(10,'Catur', 'Pontoh')";
 
 $hasil_query = mysqli_query($link, $query);
