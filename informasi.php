@@ -102,12 +102,12 @@ if (isset($_GET["submit"])) {
     </form>
     <h2>SISWA YANG MENGIKUTI EKSKUL</h2>
     <?php
-                      // tampilkan pesan jika ada
-                      if (isset($pesan)) {
-                        echo "<div class=\"pesan\">$pesan</div>";
-                      }
+    // tampilkan pesan jika ada
+    if (isset($pesan)) {
+      echo "<div class=\"pesan\">$pesan</div>";
+    }
 
-                      ?>
+    ?>
 
     <p>Ekskul:
       <select name="namaSiswa" id="namaSiswa">
@@ -134,6 +134,7 @@ if (isset($_GET["submit"])) {
       }
 
       generateSiswa();
+      //dropdown (jalankan fungsi generate siswa saat page di load)
       tabelSiswa();
       namaSiswaNode.addEventListener("change", tabelSiswa);
     </script>

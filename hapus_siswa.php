@@ -10,6 +10,7 @@ if (!isset($_SESSION["nama"])) {
 include("koneksi.php");
 
 // cek apakah form telah di submit (untuk menghapus data)
+// cek form name submit telah di submit
 if (isset($_POST["submit"])) {
   // form telah disubmit, proses data
 

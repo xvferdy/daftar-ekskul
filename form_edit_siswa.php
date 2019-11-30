@@ -42,6 +42,7 @@ if (isset($_POST["submit"])) {
     // bebaskan memory 
     mysqli_free_result($result);
   } else if ($_POST["submit"] == "Update Data") {
+
     // nilai form berasal dari halaman form_edit.php    
     // ambil nilai form 
     $nis = htmlentities(strip_tags(trim($_POST["nis"])));
@@ -214,10 +215,12 @@ if (isset($_POST["submit"])) {
     </form>
 
   </div>
-  <script>
-    var ganti = document.getElementById('ekstrakurikuler');
-    var love = ganti.value;
 
+  <script>
+    // agar value dropdown sama dengan value label (karena saya tidak tau merubah value dropdown berdasarkan halaman form edit, sedangkan label bisa)
+    var ganti = document.getElementById('ekstrakurikuler');
+
+    var love = ganti.value;
     var drop = document.querySelector('select');
     drop.value = love;
   </script>
