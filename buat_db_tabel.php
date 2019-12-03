@@ -114,7 +114,7 @@ if (!$hasil_query) {
 // buat query untuk INSERT data ke tabel masterekskul
 $query  = "INSERT INTO masterekskul VALUES ";
 $query .= "(01,'Sepak Bola', 'Lodi'),";
-$query .= "(02,'Bulutangkis','Lodi'),";
+$query .= "(02,'Bulutangkis', 'Lodi'),";
 $query .= "(03,'Renang', 'Gelis'),";
 $query .= "(04,'Basket', 'Gelis'),";
 $query .= "(05,'Tata Boga', 'Andreas'),";
