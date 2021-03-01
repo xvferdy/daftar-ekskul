@@ -3,22 +3,45 @@
 ## :triangular_flag_on_post: Table of Contents
 1. _[About The Project](#about-the-project)_
 2. _[Features](#features)_
-3. _[Screenshot](#screenshot)_
-4. _[Built With](#built-with)_
-5. _[Requirements](#requirements)_
-6. _[Installation](#installation)_
-7. _[Launch](#launch)_
+3. _[Built With](#built-with)_
+4. _[Requirements](#requirements)_
+5. _[Installation](#installation)_
+6. _[Launch](#launch)_
 
 ## About The Project
 Applications that can help teachers in registering students into extracurricular activities.
 
 **Overview** :rainbow:
 <p align="">
-  <img src="./ss.png">
+  <img src="./ss2.png">
 </p>
 
 ## Features 
+- Add **new students:**
+- View **list of school's students**
+- Add **new extracurricular** activities
+- View **school's extracurricular** list
+- See which **students** are taking a **particular extracurricular** activity
+- **Add students** to **extracurricular** activities they want
+- **Edit and delete students** in **extracurricular** activities
+
 ## Built With 
-## Requirements 
+**Technologies:**
+- HTML
+- CSS
+- PHP
+- AJAX
+
+**Tools**
+- XAMPP
+- Notepad++
+
+## Requirements
+- Install xampp
+- Web Browser supporting HTML5 : Google Chrome / Firefox
+
 ## Installation 
+- Download and Install [XAMPP](https://www.apachefriends.org/index.html "download xampp")
+- Open XAMPP Control panel and start **apache** and **mysql**
+
 ## Launch 
