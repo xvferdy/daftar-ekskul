@@ -10,12 +10,11 @@
 7. _[Launch](#launch)_
 
 ## About The Project
-**Overview**
+**Overview** :rainbow:
 <p align="">
-  <img width="640" height="340" src="./overview.png">
+  <img src="./ss.png">
 </p>
 
-## Screenshot 
 ## Features 
 ## Built With 
 ## Requirements 
