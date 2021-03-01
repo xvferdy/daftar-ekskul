@@ -32,8 +32,8 @@ Applications that can help teachers in registering students into extracurricular
 - PHP
 - AJAX
 
-**Tools**
-- XAMPP
+**Tools:**
+- [XAMPP](https://www.apachefriends.org/index.html "download xampp") - _For creating our server and database_
 - Notepad++
 
 ## Requirements
@@ -42,6 +42,6 @@ Applications that can help teachers in registering students into extracurricular
 
 ## Installation 
 - Download and Install [XAMPP](https://www.apachefriends.org/index.html "download xampp")
-- Open XAMPP Control panel and start **apache** and **mysql**
+- Open XAMPP Control panel and start **[apache]** and **[mysql]**
 
 ## Launch 
