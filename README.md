@@ -10,6 +10,8 @@
 7. _[Launch](#launch)_
 
 ## About The Project
+Applications that can help teachers in registering students into extracurricular activities.
+
 **Overview** :rainbow:
 <p align="">
   <img src="./ss.png">
