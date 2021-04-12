@@ -42,6 +42,15 @@ Applications that can help teachers in registering students into extracurricular
 
 ## Installation 
 - Download and Install [XAMPP](https://www.apachefriends.org/index.html "download xampp")
-- Open XAMPP Control panel and start **[apache]** and **[mysql]**
 
 ## Launch 
+- Open XAMPP Control panel and start **[apache]** and **[mysql]**
+- Download project's Zip
+- Extract
+- Cut the project folder to \xampp\htdocs
+- http://localhost/daftar-ekskul-master/buat_db_tabel.php 👉 to create database and its initial data
+- http://localhost/daftar-ekskul-master/index.php 👉 run app
+
+> 🧷 **Note** </br>
+◾ **koneksi.php** untuk config database</br>
+◾ **buat_db_tabel.php** untuk script pembuatan tabel
